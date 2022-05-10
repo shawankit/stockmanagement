@@ -1,0 +1,1 @@
+require('./api/get-supplier-api');

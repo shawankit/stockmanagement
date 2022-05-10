@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "username": "root",
+    "password": "root",
+    "database": "DEV-stockspace",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "port": "5433"
+  },
+  "test": {
+    "username": "root",
+    "password": "root",
+    "database": "TEST-stockspace",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "port": "5433"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "stockspace",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
