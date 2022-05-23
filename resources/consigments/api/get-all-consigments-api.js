@@ -9,9 +9,11 @@ const GetAllConsignmentsQuery = require('../queries/get-all-consigments-query');
 
 const get = async (req) => {
 
+    const {consignmentNo, offset, limit } = req.query;
+
     logInfo('Request to fetch all users',{});
 
-    const response = await db.find(new GetAllConsignmentsQuery());
+    const response = await db.find(new GetAllConsignmentsQuery(consignmentNo, offset, limit));
 
     return respond(response,'Successfully Fetched All consigments', 'Failed to fetch consigments')
 }
