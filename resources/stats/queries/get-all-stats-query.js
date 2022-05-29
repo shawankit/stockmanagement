@@ -9,7 +9,7 @@ module.exports = class GetAllStatsQuery {
         const itemCount = await Item.count();
         const [[{consignmentCount}]] = await sequelize.query(`select count(*) as "consignmentCount" from (select count("consignmentNo")
          as conCountfrom from consignments group by "consignmentNo") as t1`);
-         const [[{packageCount}]] = await sequelize.query(`select SUM(CAST("numberOfPackage" AS decimal)) as "packageCount" from consignments`);
+         const [[{packageCount}]] = await sequelize.query(`SELECT SUM((CASE WHEN "numberOfPackage"~E'^\\\\d+$' THEN "numberOfPackage"::integer ELSE 0 end)) as "packageCount" FROM consignments`);
         const godownCount = await Godown.count();
         return {
             itemCount,

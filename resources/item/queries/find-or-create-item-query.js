@@ -18,7 +18,6 @@ module.exports = class FindOrCreateItemQuery {
                 name: this.name
             }
         });
-        console.log(created);
 
         return transporter;
     }
