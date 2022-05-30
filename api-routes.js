@@ -5,3 +5,4 @@ require('./resources/item/item-route');
 require('./resources/supplier/supplier-route');
 require('./resources/transporter/transporter-route');
 require('./resources/stats/api/get-all-stats-api');
+require('./resources/challan/challan-route');
