@@ -49,6 +49,56 @@ module.exports = class GetAllConsignmentsQuery {
                             }
                         },
                         {
+                            month: {
+                                [Sequelize.Op.iLike]:  `${this.pattern}%`
+                            }
+                        },
+                        {
+                            date: {
+                                [Sequelize.Op.iLike]:  `${this.pattern}%`
+                            }
+                        },
+                        {
+                            billDate: {
+                                [Sequelize.Op.iLike]:  `${this.pattern}%`
+                            }
+                        },
+                        {
+                            privartMark: {
+                                [Sequelize.Op.iLike]:  `${this.pattern}%`
+                            }
+                        },
+                        {
+                            ewaybillNo: {
+                                [Sequelize.Op.iLike]:  `${this.pattern}%`
+                            }
+                        },
+                        {
+                            deliverydate: {
+                                [Sequelize.Op.iLike]:  `${this.pattern}%`
+                            }
+                        },
+                        {
+                            mrdate: {
+                                [Sequelize.Op.iLike]:  `${this.pattern}%`
+                            }
+                        },
+                        {
+                            amount: {
+                                [Sequelize.Op.iLike]:  `${this.pattern}%`
+                            }
+                        },
+                        {
+                            weight: {
+                                [Sequelize.Op.iLike]:  `${this.pattern}%`
+                            }
+                        },
+                        {
+                            rate: {
+                                [Sequelize.Op.iLike]:  `${this.pattern}%`
+                            }
+                        },
+                        {
                             '$godowns.name$': {
                                 [Sequelize.Op.iLike]:  `${this.pattern}%`
                             },
