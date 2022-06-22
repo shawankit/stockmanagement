@@ -15,12 +15,12 @@ const post = async (req) => {
     let responses = [];
 
     for(let i = 0 ; i < packageList.length ; i++){
-        const { item, privateMark, weight,quantity , rate } = packageList[i];
+        const { item, privartMark, weight,quantity , rate } = packageList[i];
         const request = {
             body: {
                 month,entrydate,consignmentNo,transporter,supplier,numberOfPackage: 1,
                 billNo,billDate,amountDeclared,ewaybillNo,mrno,mrdate,amount,deliverydate,challanNumber, godown,
-                item, privateMark, weight,quantity , rate
+                item, privartMark, weight,quantity , rate
             }
         }
         const result = await CreateConsignmentService.post(request)
