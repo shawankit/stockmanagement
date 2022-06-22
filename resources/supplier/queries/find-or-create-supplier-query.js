@@ -18,7 +18,6 @@ module.exports = class FindOrCreateSupplierQuery {
                 name: this.name
             }
         });
-        console.log(created);
 
         return transporter;
     }

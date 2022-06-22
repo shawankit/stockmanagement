@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Consignment.init({
     month: DataTypes.STRING,
-    date: DataTypes.STRING,
+    entrydate: DataTypes.STRING,
     consignmentNo: DataTypes.STRING,
     transporter: DataTypes.STRING,
     supplier: DataTypes.STRING,
@@ -46,7 +46,8 @@ module.exports = (sequelize, DataTypes) => {
     mrdate: DataTypes.STRING,
     amount: DataTypes.STRING,
     deliverydate: DataTypes.STRING,
-    challanNumber: DataTypes.STRING
+    challanNumber: DataTypes.STRING,
+    godown: DataTypes.STRING
   }, {
     sequelize,
     tableName: 'consignments',

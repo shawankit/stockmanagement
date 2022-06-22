@@ -17,7 +17,7 @@ const dbExecute = async (value,fn) => R.ifElse(
 )();
 
 const post = async (req) => {
-    const { month,date,consignmentNo,transporter,supplier,privartMark,numberOfPackage,weight,quantity,item,billNo,billDate,amountDeclared,rate,ewaybillNo,mrno,mrdate,amount,deliverydate,challanNumber }
+    const { month,entrydate,consignmentNo,transporter,supplier,privartMark,numberOfPackage,weight,quantity,item,billNo,billDate,amountDeclared,rate,ewaybillNo,mrno,mrdate,amount,deliverydate,challanNumber, godown }
      = req.body;
 
     logInfo('Request to create consignmentNo',consignmentNo);
@@ -31,7 +31,7 @@ const post = async (req) => {
     const itemId = uuid.v4();
 
     const response = await composeResult(
-        () => db.execute(new CreateConsigmentQuery(consignmentId,month,date,consignmentNo,transporter,supplier,privartMark,numberOfPackage,weight,quantity,item,billNo,billDate,amountDeclared,rate,ewaybillNo,mrno,mrdate,amount,deliverydate,challanNumber)),
+        () => db.execute(new CreateConsigmentQuery(consignmentId,month,entrydate,consignmentNo,transporter,supplier,privartMark,numberOfPackage,weight,quantity,item,billNo,billDate,amountDeclared,rate,ewaybillNo,mrno,mrdate,amount,deliverydate,challanNumber,godown)),
         () => dbExecute(transporter, () => db.execute(new FindOrCreateTransporterQuery(transporterId,transporter))),
         () => dbExecute(supplier, () => db.execute(new FindOrCreateSupplierQuery(supplierId,supplier))),
         () => dbExecute(item, () => db.execute(new FindOrCreateItemQuery(itemId,item)))
@@ -42,3 +42,5 @@ const post = async (req) => {
 
 
 Route.withOutSecurity().noAuth().post('/consigments',post).bind();
+
+module.exports = { post }

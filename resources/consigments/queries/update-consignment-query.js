@@ -2,12 +2,12 @@ const { Consignment } = require('models');
 
 module.exports = class UpdateConsignmentQuery {
     constructor(
-        id,month,date,consignmentNo,transporter,supplier,privartMark,numberOfPackage,weight,quantity,item,billNo,billDate,amountDeclared,rate,ewaybillNo,mrno,mrdate,amount,deliverydate,challanNumber
+        id,month,entrydate,consignmentNo,transporter,supplier,privartMark,numberOfPackage,weight,quantity,item,billNo,billDate,amountDeclared,rate,ewaybillNo,mrno,mrdate,amount,deliverydate,challanNumber,godown
     ) {
         this.id = id;
         this.details = {
             month,
-            date,
+            entrydate,
             consignmentNo,
             transporter,
             supplier,
@@ -25,7 +25,8 @@ module.exports = class UpdateConsignmentQuery {
             mrdate,
             amount,
             deliverydate,
-            challanNumber
+            challanNumber,
+            godown
         }
     }
 

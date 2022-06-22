@@ -2,11 +2,11 @@ const { Consignment } = require("./../../../models");
 
 
 module.exports = class CreateConsigmentQuery {
-    constructor(id,month,date,consignmentNo,transporter,supplier,privartMark,numberOfPackage,weight,quantity,item,billNo,billDate,amountDeclared,rate,ewaybillNo,mrno,mrdate,amount,deliverydate,challanNumber){
+    constructor(id,month,entrydate,consignmentNo,transporter,supplier,privartMark,numberOfPackage,weight,quantity,item,billNo,billDate,amountDeclared,rate,ewaybillNo,mrno,mrdate,amount,deliverydate,challanNumber,godown){
         this.details = {
             id,
             month,
-            date,
+            entrydate,
             consignmentNo,
             transporter,
             supplier,
@@ -24,7 +24,8 @@ module.exports = class CreateConsigmentQuery {
             mrdate,
             amount,
             deliverydate,
-            challanNumber
+            challanNumber,
+            godown
         }
     }
 

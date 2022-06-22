@@ -54,7 +54,7 @@ module.exports = class GetAllConsignmentsQuery {
                             }
                         },
                         {
-                            date: {
+                            entrydate: {
                                 [Sequelize.Op.iLike]:  `${this.pattern}%`
                             }
                         },
@@ -119,23 +119,7 @@ module.exports = class GetAllConsignmentsQuery {
                     as: 'godowns',
                     order: [
                         ['updatedAt', 'DESC']
-                    ],
-                    // where: {
-                    //     id: {
-                    //         [Sequelize.Op.eq]: Sequelize.literal(`(select
-                    //     clc."godownId" as id
-                    // from
-                    //     "consigmentLocations" as clc
-                    // where
-                    //     clc."createdAt" = (
-                    //     select
-                    //         max(cl."createdAt")
-                    //     from
-                    //         "consigmentLocations" as cl
-                    //     where
-                    //         cl."consignmentId" = "Consignment".id ))`)
-                    //     }
-                    // }
+                    ]
                 }],
                 order: [
                     ['updatedAt', 'DESC']
