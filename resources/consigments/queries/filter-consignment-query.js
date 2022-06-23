@@ -23,7 +23,7 @@ module.exports = class FilterConsignmentsQuery {
         }
 
         if(privateMark && privateMark.length > 0){
-            filter = {...filter, privateMark}
+            filter = {...filter, privartMark: privateMark}
         }
 
         if(item && item.length > 0){
@@ -40,7 +40,7 @@ module.exports = class FilterConsignmentsQuery {
                 );
                 whereClause.push(
                     sequelize.where(sequelize.fn('to_date', sequelize.col('entrydate'), 'YYYY-MM-DD'), {
-                        [Op.lte]: sequelize.fn('to_date', fromDate, 'YYYY-MM-DD')
+                        [Op.lte]: sequelize.fn('to_date', toDate, 'YYYY-MM-DD')
                     })
                 );
             }
