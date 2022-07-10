@@ -13,23 +13,29 @@ const postAll = async (req) => {
 
     logInfo('Request to update all consignments', {});
 
-    const allResponses = [];
+    
     const response = await db.find(new GetAllConsignmentsQuery());
 
-    for(let i = 0 ; i < response.length ; i++){
-        const { month,entrydate,consignmentNo,transporter,supplier,privartMark,numberOfPackage,weight,quantity,item,billNo,billDate,amountDeclared,rate,ewaybillNo,mrno,mrdate,amount,deliverydate,challanNumber, godown }
-        = response[i];
-        let req = {
-            body:  { month,entrydate,consignmentNo,transporter,supplier,privartMark,numberOfPackage,weight,quantity,item,billNo,billDate,amountDeclared,rate,ewaybillNo,mrno,mrdate,amount,deliverydate,challanNumber, godown },
-            params: {
-                id: response[i].id
+    const responses = await whenResult(
+        async(list) => {
+            const allResponses = [];
+            for(let i = 0 ; i < list.length ; i++){
+                const { month,entrydate,consignmentNo,transporter,supplier,privartMark,numberOfPackage,weight,quantity,item,billNo,billDate,amountDeclared,rate,ewaybillNo,mrno,mrdate,amount,deliverydate,challanNumber, godown }
+                = list[i];
+                let req = {
+                    body:  { month,entrydate,consignmentNo,transporter,supplier,privartMark,numberOfPackage,weight,quantity,item,billNo,billDate,amountDeclared,rate,ewaybillNo,mrno,mrdate,amount,deliverydate,challanNumber, godown },
+                    params: {
+                        id: list[i].id
+                    }
+                }
+                const res = await post(req);
+                allResponses.push(res);
             }
+            return Result.Ok(allResponses);
         }
-        const res = await post(req);
-        allResponses.push(res);
-    }
-
-    return respond(allResponses,'Successfully Updated Consigment All', 'Failed to Update Consigment')
+    )(response);
+    
+    return respond(responses,'Successfully Updated Consigment All', 'Failed to Update Consigment')
 }
 
 
