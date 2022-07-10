@@ -52,3 +52,5 @@ const post = async (req) => {
 
 
 Route.withOutSecurity().noAuth().put('/consigments/:id',post).bind();
+
+module.exports = { post };
