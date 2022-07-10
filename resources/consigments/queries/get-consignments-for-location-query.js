@@ -5,8 +5,8 @@ module.exports = class  GetConsignmentForLocationQuery{
         this.details = {godownId}
     }
 
-    get(){
-        return ConsigmentLocation.findAll({
+    async get(){
+        const result = await ConsigmentLocation.findAll({
             where: this.details,
             include : [{
                 model: Godown,
@@ -18,5 +18,7 @@ module.exports = class  GetConsignmentForLocationQuery{
             }
         ]
         }); 
+
+        return result.filter((data) => data.consignments != null);
     }
 }
