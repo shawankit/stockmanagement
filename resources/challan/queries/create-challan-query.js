@@ -1,9 +1,9 @@
 const { Challan, ChallanConsignment } = require("./../../../models");
 
 module.exports = class CreateBulkMediaQuery {
-    constructor(id, number, godownId, challanConsignments) {
+    constructor(id, number = '', godownId, toGodownId, challanConsignments) {
         this.datails = {
-            id, number, godownId
+            id, number, godownId, toGodownId
         }
         this.challanConsignments = challanConsignments;
     }
@@ -11,10 +11,10 @@ module.exports = class CreateBulkMediaQuery {
     async get() {
 
         const challan = await Challan.create(this.datails);
-        const challanConsignments = await ChallanConsignment.bulkCreate(this.challanConsignments, { individualHooks: true });
+        const challanConsignments = await ChallanConsignment.bulkCreate(this.challanConsignments);
 
         return {
             challan, challanConsignments
-        }
+        };
     }
 };

@@ -2,12 +2,12 @@ const { Consignment, Godown, sequelize } = require("./../../../models");
 const R = require('ramda');
 const { Op } = require("sequelize");
 module.exports = class FilterConsignmentsQuery {
-    constructor({consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month}){
-        this.details = { consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month };
+    constructor({consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month, godown}){
+        this.details = { consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month, godown };
     }
 
     get(){
-        const { consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month } = this.details;
+        const { consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month, godown } = this.details;
 
         let filter = {};
         if(consignmentNo && consignmentNo.length > 0){
@@ -60,15 +60,26 @@ module.exports = class FilterConsignmentsQuery {
             }
         }
 
+        let includesGodown = {
+            model: Godown,
+            as: 'godowns',
+            order: [
+                ['updatedAt', 'DESC']
+            ]
+        };
+
+        if(godown && godown.length > 0){
+            includesGodown = {
+                ...includesGodown,
+                where: {
+                    name: godown
+                }
+            }
+        }
+
         return Consignment.findAll({
             where: filter,
-            include : [{
-                model: Godown,
-                as: 'godowns',
-                order: [
-                    ['updatedAt', 'DESC']
-                ]
-            }],
+            include : [includesGodown],
             order: [
                 ['updatedAt', 'DESC']
             ]

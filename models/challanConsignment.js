@@ -13,9 +13,20 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
 
       ChallanConsignment.belongsTo(models.Challan, {
-        foreignKey: 'challanId',
-        as: 'challan'
+          foreignKey: 'challanId',
+          as: 'challan'
+      });
+
+      ChallanConsignment.belongsTo(models.Godown, {
+        foreignKey: 'fromGodownId',
+        as: 'fromGodown'
     });
+
+    ChallanConsignment.belongsTo(models.Godown, {
+      foreignKey: 'toGodownId',
+      as: 'toGodown'
+    });
+
     }
   }
   ChallanConsignment.init({
@@ -26,7 +37,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     challanId:DataTypes.UUID,
     number: DataTypes.STRING,
-    godownId: DataTypes.UUID,
+    fromGodownId: DataTypes.UUID,
+    toGodownId: DataTypes.UUID,
     consignmentId: DataTypes.UUID
   }, {
     sequelize,

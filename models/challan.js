@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Challan.hasMany(models.ChallanConsignment,  { foreignKey: 'challanId', as: 'challanConsignments' })
-      Challan.belongsTo(models.ChallanConsignment,  { foreignKey: 'godownId', as: 'godown' })
+      Challan.belongsTo(models.Godown,  { foreignKey: 'godownId', as: 'godown' })
+      Challan.belongsTo(models.Godown,  { foreignKey: 'toGodownId', as: 'toGodown' })
     }
   }
   Challan.init({
@@ -22,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID
     },
     number: DataTypes.STRING,
-    godownId: DataTypes.UUID
+    godownId: DataTypes.UUID,
+    toGodownId: DataTypes.UUID
   }, {
     sequelize,
     modelName: 'Challan',

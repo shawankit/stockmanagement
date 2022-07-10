@@ -1,24 +1,25 @@
 const { Challan, ChallanConsignment, Godown } = require("../../../models");
 
-module.exports = class GetAllItemsQuery {
-    constructor(){
-        this.details = {}
+module.exports = class GetChallanConsignmentQuery {
+    constructor(consignmentId){
+        this.details = {consignmentId}
     }
 
     get(){
-        return Challan.findAll({
+        return ChallanConsignment.findAll({
+            where: this.details,
             include : [
                 {
                     model: Godown,
-                    as: 'godown'
+                    as: 'fromGodown'
                 },
                 {
                     model: Godown,
                     as: 'toGodown'
                 },
                 {
-                    model: ChallanConsignment,
-                    as: 'challanConsignments'
+                    model: Challan,
+                    as: 'challan'
                 }
             ]
         });

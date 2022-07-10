@@ -9,12 +9,12 @@ const FilterConsignmentsQuery = require('../queries/filter-consignment-query');
 
 const get = async (req) => {
 
-    const {consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month } = req.body;
+    const {consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month, godown } = req.body;
 
-    logInfo('Request to fetch all users',{consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month });
+    logInfo('Request to fetch all users',{consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month, godown });
 
     const response = await db.find(new FilterConsignmentsQuery({
-         consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month
+         consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month, godown
     }));
 
     return respond(response,'Successfully filter All consigments', 'Failed to filter consigments')

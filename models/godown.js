@@ -18,14 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         otherKey: 'consignmentId'
       });
 
-      this.belongsToMany(Consignment, {
-        through: ChallanConsignment,
-        as: 'challanConsignments',
-        foreignKey: 'godownId',
-        otherKey: 'consignmentId'
-      });
 
       this.hasMany(Challan,  { foreignKey: 'godownId', as: 'challans' })
+      this.hasMany(Challan,  { foreignKey: 'toGodownId' })
+      this.hasMany(ChallanConsignment,  { foreignKey: 'toGodownId' })
+      this.hasMany(ChallanConsignment,  { foreignKey: 'fromGodownId' })
     }
   }
   Godown.init({
