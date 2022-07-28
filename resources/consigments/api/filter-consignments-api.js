@@ -11,11 +11,13 @@ const get = async (req) => {
 
     const {consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month, godown } = req.body;
 
+    const { offset, limit } = req.query;
+
     logInfo('Request to fetch all users',{consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month, godown });
 
     const response = await db.find(new FilterConsignmentsQuery({
          consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month, godown
-    }));
+    }, offset, limit));
 
     return respond(response,'Successfully filter All consigments', 'Failed to filter consigments')
 }

@@ -2,8 +2,10 @@ const { Consignment, Godown, sequelize } = require("./../../../models");
 const R = require('ramda');
 const { Op } = require("sequelize");
 module.exports = class FilterConsignmentsQuery {
-    constructor({consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month, godown}){
+    constructor({consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month, godown}, offset = 0, limit = 10){
         this.details = { consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month, godown };
+        this.limit = limit;
+        this.offset = offset;
     }
 
     get(){
@@ -77,12 +79,16 @@ module.exports = class FilterConsignmentsQuery {
             }
         }
 
-        return Consignment.findAll({
+        return Consignment.findAndCountAll({
             where: filter,
             include : [includesGodown],
             order: [
-                ['updatedAt', 'DESC']
-            ]
+                ['entrydate', 'DESC'],
+                ['updatedAt', 'DESC'],
+                ['consignmentNo', 'ASC'] 
+            ],
+            offset: this.offset,
+            limit: this.limit
         });
     }
 }

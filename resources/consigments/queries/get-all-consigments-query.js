@@ -8,9 +8,8 @@ module.exports = class GetAllConsignmentsQuery {
     }
 
     get(){
-      
         if(!R.isNil(this.pattern)){
-            return Consignment.findAll({
+            return Consignment.findAndCountAll({
                 where: {
                     [Sequelize.Op.or]: [
                         {
@@ -122,12 +121,15 @@ module.exports = class GetAllConsignmentsQuery {
                     ]
                 }],
                 order: [
-                    ['updatedAt', 'DESC']
+                    ['entrydate', 'DESC'],
+                    ['updatedAt', 'DESC'],
+                    ['consignmentNo', 'ASC']
                 ],
-                offset: this.offset
+                offset: this.offset,
+                limit: this.limit
             });
         }
-        return Consignment.findAll({
+        return Consignment.findAndCountAll({
             include : [{
                 model: Godown,
                 as: 'godowns',
@@ -136,9 +138,12 @@ module.exports = class GetAllConsignmentsQuery {
                 ],
             }],
             order: [
-                ['updatedAt', 'DESC']
+                ['entrydate', 'DESC'],
+                ['updatedAt', 'DESC'],
+                ['consignmentNo', 'ASC']
             ],
-            offset: this.offset
+            offset: this.offset,
+            limit: this.limit
         });
     }
 }
