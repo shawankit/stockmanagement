@@ -10,3 +10,4 @@ require('./api/filter-consignments-api');
 require('./api/create-bulk-consignment-api');
 require('./api/get-consignment-for-location-api');
 require('./api/update-all-consignments-api');
+require('./api/download-consignment-report');

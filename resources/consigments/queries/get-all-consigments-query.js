@@ -122,7 +122,7 @@ module.exports = class GetAllConsignmentsQuery {
                 }],
                 order: [
                     ['entrydate', 'DESC'],
-                    ['updatedAt', 'DESC'],
+                    //['updatedAt', 'DESC'],
                     ['consignmentNo', 'ASC']
                 ],
                 offset: this.offset,
@@ -139,7 +139,7 @@ module.exports = class GetAllConsignmentsQuery {
             }],
             order: [
                 ['entrydate', 'DESC'],
-                ['updatedAt', 'DESC'],
+                //['updatedAt', 'DESC'],
                 ['consignmentNo', 'ASC']
             ],
             offset: this.offset,
