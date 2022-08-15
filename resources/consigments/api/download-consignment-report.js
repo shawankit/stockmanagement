@@ -15,7 +15,9 @@ const get = async (req) => {
     logInfo('Request to get report',{});
 
     const response = await composeResult(
-        (data) => GenerateExcelReportService.perform(data),
+        (data) => GenerateExcelReportService.perform(data, {
+            consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month, godown
+        }),
         () => db.find(new FilterConsignmentsQuery({
                 consignmentNo, transporter, supplier, privateMark , fromDate, toDate, item, month, godown
         }, 0, 10, true))
