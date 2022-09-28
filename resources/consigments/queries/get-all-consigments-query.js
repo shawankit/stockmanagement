@@ -122,8 +122,8 @@ module.exports = class GetAllConsignmentsQuery {
                 }],
                 order: [
                     ['entrydate', 'DESC'],
-                    //['updatedAt', 'DESC'],
-                    ['consignmentNo', 'ASC']
+                    ['consignmentNo', 'ASC'],
+                    ['privartMark', 'ASC']
                 ],
                 offset: this.offset,
                 limit: this.limit
@@ -139,8 +139,8 @@ module.exports = class GetAllConsignmentsQuery {
             }],
             order: [
                 ['entrydate', 'DESC'],
-                //['updatedAt', 'DESC'],
-                ['consignmentNo', 'ASC']
+                ['consignmentNo', 'ASC'],
+                ['privartMark', 'ASC']
             ],
             offset: this.offset,
             limit: this.limit

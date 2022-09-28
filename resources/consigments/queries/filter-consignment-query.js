@@ -88,8 +88,8 @@ module.exports = class FilterConsignmentsQuery {
             include : [includesGodown],
             order: [
                 ['entrydate', 'DESC'],
-                //['updatedAt', 'DESC'],
-                ['consignmentNo', 'ASC'] 
+                ['consignmentNo', 'ASC'],
+                ['privartMark', 'ASC'] 
             ],
             ...limitConfig
         });
